@@ -1,0 +1,39 @@
+@import "./base.scss";
+.back {
+  background: #ffdd44;
+  height: 120px;
+  color: #999;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  @include wrapper;
+}
+
+.wrapper {
+  @extend .back;
+  @include wrapper;
+}
+
+.quarter-sider {
+  @extend .back;
+  @include quarter-sider;
+}
+
+.quarter-content {
+  @extend .back;
+  @include quarter-content;
+}
+
+.third-sider {
+  @extend .back;
+  @include third-sider;
+}
+
+.third-content {
+  @extend .back;
+  @include third-content;
+}
