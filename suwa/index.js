@@ -18,10 +18,14 @@ try {
   }
   const data = await res.json();
   console.log(data);
-  serverJ('速蛙签到', data.message);
+  if (data.code !== 100) {
+    serverJ('速蛙签到失败', data.message);
+  } else {
+    serverJ('速蛙签到', data.data.message);
+  }
 } catch (err) {
   console.error(err);
   const status = err.status;
   const statusText = err.statusText;
-  serverJ('速蛙签到执行失败', `${status} ${statusText}`);
+  serverJ('速蛙执行失败', `${status} ${statusText}`);
 }
