@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-const serverJKey = process.env.PUSH_KEY;
-const url = `https://sctapi.ftqq.com/${serverJKey}.send`;
+const PUSH_KEY = process.env.PUSH_KEY;
+const url = `https://sctapi.ftqq.com/${PUSH_KEY}.send`;
 
 async function serverJ(title, desp) {
   const params = new URLSearchParams();
