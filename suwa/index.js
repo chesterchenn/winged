@@ -16,15 +16,7 @@ try {
     serverJ('速蛙签到失败', `${data.message}\n\n流量剩余${info.data.unused_traffic}`);
   } else {
     serverJ('速蛙签到', `${data.data.message}\n\n流量剩余${info.data.unused_traffic}`);
-    const date = new Date();
-    const YYYY = date.getFullYear();
-    const MM = (date.getMonth() + 1).toString().padStart(2, '0');
-    const DD = date.getDate().toString().padStart(2, '0');
-    if (DD === '26' && fs.existsSync(RESULT)) {
-      fs.rmSync(RESULT);
-    }
-    const save = `${YYYY}-${MM}-${DD} ${data.data.message} 流量剩余${info.data.unused_traffic}\n`;
-    fs.appendFileSync(RESULT, save);
+    saveResult(data.data.message, info.data.unused_traffic);
   }
 } catch (err) {
   console.error(err);
@@ -61,4 +53,16 @@ async function fetchCheckin() {
   }
   const data = await res.json();
   return data;
+}
+
+function saveResult(message, traffic) {
+  const date = new Date();
+  const YYYY = date.getFullYear();
+  const MM = (date.getMonth() + 1).toString().padStart(2, '0');
+  const DD = date.getDate().toString().padStart(2, '0');
+  if (DD === '26' && fs.existsSync(RESULT)) {
+    fs.rmSync(RESULT);
+  }
+  const save = `${YYYY}-${MM}-${DD} ${message} 流量剩余${traffic}\n`;
+  fs.appendFileSync(RESULT, save);
 }
