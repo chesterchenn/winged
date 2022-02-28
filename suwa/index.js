@@ -15,8 +15,9 @@ try {
   if (data.code !== 100) {
     serverJ('速蛙签到失败', `${data.message}\n\n流量剩余${info.data.unused_traffic}`);
   } else {
-    serverJ('速蛙签到', `${data.data.message}\n\n流量剩余${info.data.unused_traffic}`);
     saveResult(data.data.message, info.data.unused_traffic);
+    const total = calResult();
+    serverJ('速蛙签到', `${data.data.message}\n\n流量剩余${info.data.unused_traffic}\n\n${total}`);
   }
 } catch (err) {
   console.error(err);
@@ -65,4 +66,23 @@ function saveResult(message, traffic) {
   }
   const save = `${YYYY}-${MM}-${DD} ${message} 流量剩余${traffic}\n`;
   fs.appendFileSync(RESULT, save);
+}
+
+function calResult() {
+  const result = fs.readFileSync(RESULT, 'utf8');
+  const matches = result.matchAll(/获得了 \d*MB/g);
+  const data = [];
+  for (const m of matches) {
+    const d = Number.parseInt(m[0].match(/\d*MB/)[0]);
+    data.push(d);
+  }
+  let all = data.reduce((cal, d) => cal + d, 0);
+  let unit = 'MB';
+
+  if (all > 1000) {
+    all /= 1000;
+    all = all.toFixed(2);
+    unit = 'GB';
+  }
+  return `当月累计签到总计 ${all}${unit}`;
 }
