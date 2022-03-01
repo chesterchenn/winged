@@ -13,7 +13,8 @@ try {
   console.log(data, info);
 
   if (data.code !== 100) {
-    serverJ('速蛙签到失败', `${data.message}\n\n流量剩余${info.data.unused_traffic}`);
+    const total = calResult();
+    serverJ('速蛙签到失败', `${data.message}\n\n流量剩余${info.data.unused_traffic}\n\b${total}`);
   } else {
     saveResult(data.data.message, info.data.unused_traffic);
     const total = calResult();
