@@ -71,10 +71,17 @@ function saveResult(message, traffic) {
 
 function calResult() {
   const result = fs.readFileSync(RESULT, 'utf8');
-  const matches = result.matchAll(/获得了 \d*MB/g);
+  const matches = result.matchAll(/获得了\s*\d*(M|G)B/g);
   const data = [];
   for (const m of matches) {
-    const d = Number.parseInt(m[0].match(/\d*MB/)[0]);
+    const matchM = m[0].match(/\d*MB/);
+    const matchG = m[0].match(/\d*GB/);
+    let d;
+    if (matchM) {
+      d = Number.parseInt(matchM[0]);
+    } else if (matchG) {
+      d = Number.parseInt(matchG[0]) * 1000;
+    }
     data.push(d);
   }
   let all = data.reduce((cal, d) => cal + d, 0);
