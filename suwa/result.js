@@ -3,13 +3,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const RESULT = path.resolve(__filename, '../result.txt');
+// 从环境变量读取流量刷新的日期
+const SW_DAY = process.env.SW_DAY || '29';
 
 export function saveResult(message, traffic) {
   const date = new Date();
   const YYYY = date.getFullYear();
   const MM = (date.getMonth() + 1).toString().padStart(2, '0');
   const DD = date.getDate().toString().padStart(2, '0');
-  if (DD === '26' && fs.existsSync(RESULT)) {
+  if (DD === SW_DAY && fs.existsSync(RESULT)) {
     fs.rmSync(RESULT);
   }
   const save = `${YYYY}-${MM}-${DD} ${message} 流量剩余${traffic}\n`;
