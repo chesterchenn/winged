@@ -7,6 +7,7 @@
 环境变量
 
 - SU_WA: 速蛙云的 AuthorizationMweb 请求头字段
+- SU_DAY: 速娃云的重置日期
 - PUSK_KEY: Server 酱的 sendkey
 
 ## 列表
