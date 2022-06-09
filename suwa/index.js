@@ -2,8 +2,9 @@ import fetch from 'node-fetch';
 import serverJ from './serverJ.js';
 import { calResult, saveResult } from './result.js';
 
-const URL = 'https://m.sw13.icu/api_mweb/user/checkin';
-const INFO_URL = 'https://m.sw13.icu/api_mweb/user/info';
+const HOST = `https://m.nnw0.top`;
+const URL = `${HOST}/api_mweb/user/checkin`;
+const INFO_URL = `${HOST}/api_mweb/user/info`;
 const SU_WA = process.env.SU_WA;
 
 try {
