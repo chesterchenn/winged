@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "name": "hong-om",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "packageManager": "yarn@3.6.0",
+  "dependencies": {
+    "electron": "^25.2.0",
+    "python-shell": "^5.0.0"
+  }
+}
