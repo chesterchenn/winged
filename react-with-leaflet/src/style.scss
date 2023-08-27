@@ -5,3 +5,10 @@ $text-color: #bd93f9;
   text-align: center;
   font-size: 28px;
 }
+
+.custom-control {
+  width: 28px;
+  height: 28px;
+  marginleft: 20px;
+  background: $text-color;
+}
